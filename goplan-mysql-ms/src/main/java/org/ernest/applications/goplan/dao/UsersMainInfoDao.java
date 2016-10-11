@@ -9,4 +9,5 @@ public interface UsersMainInfoDao {
     UserMainInfoDto retrieveUserMainInfo(long userId);
     void updateUserMainInfoDescription(long userId, String description);
     void deleteUserMainInfo(long userId);
+    Long retriveUserId(String facebookId);
 }

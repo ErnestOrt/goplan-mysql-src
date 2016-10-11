@@ -20,6 +20,8 @@ public class UsersMainInfoTest {
         long userId = usersMainInfoDao.createUserMainInfo("Ernest", "faceId");
         Assert.assertTrue(usersMainInfoDao.retrieveUserMainInfo(userId).getName().equals("Ernest"));
 
+        Assert.assertTrue(usersMainInfoDao.retriveUserId("faceId") == userId);
+
         usersMainInfoDao.updateUserMainInfoDescription(userId, "description");
         Assert.assertTrue(usersMainInfoDao.retrieveUserMainInfo(userId).getDescription().equals("description"));
 

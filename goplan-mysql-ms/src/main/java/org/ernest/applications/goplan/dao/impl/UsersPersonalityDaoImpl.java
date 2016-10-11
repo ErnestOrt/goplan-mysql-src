@@ -1,8 +1,8 @@
 package org.ernest.applications.goplan.dao.impl;
 
 
+import org.ernest.applications.goplan.ct.UserPersonalityDto;
 import org.ernest.applications.goplan.dao.UsersPersonalityDao;
-import org.ernest.applications.goplan.ct.goplan.dto.UserPersonalityDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -31,9 +31,9 @@ public class UsersPersonalityDaoImpl implements UsersPersonalityDao {
     }
 
     @Override
-    public UserPersonalityDto retrieveUsersPersonality(long rowId) {
-        return jdbcTemplate.query("SELECT eat, drink, party, sleep, work, mature, sport, movies, spirituality, travel, freak, animals FROM users_personality WHERE pk_id = ?",
-                new Object[] { rowId },
+    public UserPersonalityDto retrieveUsersPersonality(long userId) {
+        return jdbcTemplate.query("SELECT eat, drink, party, sleep, work, mature, sport, movies, spirituality, travel, freak, animals FROM users_personality WHERE fk_user_id = ?",
+                new Object[] { userId },
                 (rs, rowNum) -> (new UserPersonalityDto(rs.getInt("eat"),
                         rs.getInt("drink"),
                         rs.getInt("party"),
@@ -67,7 +67,7 @@ public class UsersPersonalityDaoImpl implements UsersPersonalityDao {
     }
 
     @Override
-    public void deleteUsersPersonality(long rowId) {
-        jdbcTemplate.update("DELETE FROM users_personality WHERE PK_ID= ? ", rowId);
+    public void deleteUsersPersonality(long userId) {
+        jdbcTemplate.update("DELETE FROM users_personality WHERE fk_user_id= ? ", userId);
     }
 }
